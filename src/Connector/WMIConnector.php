@@ -53,7 +53,7 @@ class WMIConnector {
      * @param string $ROOT_FO
      * @throws Exception
      */
-    public function __construct(string $host, string $username = '', string $password = '', $ROOT_CI = "root\cimv2", $ROOT_FO = "ms_409")
+    public function __construct(string $host, string $username = null, string $password = null, $ROOT_CI = "root\cimv2", $ROOT_FO = "ms_409")
     {
 
         //Check loaded extensions

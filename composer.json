@@ -1,5 +1,5 @@
 {
-    "name": "tisantan/SwbemLocator",
+    "name": "tisantan/php-wbemscripting",
     "description": "Connect into any windows machine using COM extension and WbemScripting",
     "keywords": ["WbemScripting", "composer", "package"],
     "authors": [
@@ -10,7 +10,7 @@
     ],
     "type": "project",
     "require": {
-		"php": ">=7.0.0"
+		"php": ">=7.1.0"
     },
     "autoload": {
         "psr-4": {
