@@ -10,7 +10,8 @@
     ],
     "type": "project",
     "require": {
-		"php": ">=7.1.0"
+		"php": ">=7.1.0",
+        "ext-com_dotnet": "*"
     },
     "autoload": {
         "psr-4": {
