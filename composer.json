@@ -1,0 +1,22 @@
+{
+    "name": "tisantan/SwbemLocator",
+    "description": "Connect into any windows machine using COM extension and WbemScripting",
+    "keywords": ["WbemScripting", "composer", "package"],
+    "authors": [
+        {
+            "name": "Tiago Santana",
+            "email": "tiagoiamamoto@gmail.com"
+        }
+    ],
+    "type": "project",
+    "require": {
+		"php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CIMV2\\": "src/CIMV2/",
+            "Connector\\": "src/Connector/",
+            "WMI\\": "src/WMI/"
+        }
+    }
+}
