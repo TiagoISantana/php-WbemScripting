@@ -1,12 +1,10 @@
 <?php
-
-
+ini_set('max_execution_time',0);
 require "vendor/autoload.php";
-
-
-$obj = new CIMV2\Win32_PhysicalMemory(".");
-
-print_r($obj->getAttributes());
+ini_set('max_execution_time',0);
+$obj = new CIMV2\Win32_SoftwareElement(".");
+ini_set('max_execution_time',0);
+print_r($obj->getSoftware());
 
 
 
