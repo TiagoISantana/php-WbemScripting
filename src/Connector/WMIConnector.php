@@ -83,7 +83,7 @@ class WMIConnector {
 
         } catch (Exception $exception) {
 
-            throw new Exception("Error on WMI connection: {$exception->getMessage()}", 002);
+            throw new Exception($exception->getMessage(), $exception->getCode());
 
         }
 
