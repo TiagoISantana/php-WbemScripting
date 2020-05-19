@@ -7,6 +7,7 @@ use Connector\WMIConnector;
 
 /**
  * Class Win32_Volume
+ * TODO: Methods to add - AddMountPoint(), DefragAnalysis(), ExcludeFromAutoChk(), Reset(), ScheduleAutoChk(), SetPowerState()
  * @package WMI
  */
 final class Win32_Volume extends WMIConnector
@@ -16,23 +17,92 @@ final class Win32_Volume extends WMIConnector
      * @return array
      * Retrieve information volumes(disks) of the machine
      */
-    public function getMachineVolumes(): array
+    public function getAttributes(): array
     {
 
-        $volumeList = [];
-
         foreach ($this->_wmi_connector->instancesof('Win32_Volume') as $volume) {
-
-            $volumeList[] = [
-                'Capacity' => $volume->Capacity,
-                'DriveLetter' => $volume->DriveLetter,
-                'DeviceID' => $volume->DeviceID,
-                'FreeSpace' => $volume->FreeSpace,
-                'FileSystem' => $volume->FileSystem,
-            ];
+            $Access[] = (int)$volume->Access;
+            $Automount[] = (bool)$volume->Automount;
+            $Availability[] = (int)$volume->Availability;
+            $BlockSize[] = (int)$volume->BlockSize;
+            $BootVolume [] = (bool)$volume->BootVolume;
+            $Capacity[] = (int)$volume->Capacity;
+            $Compressed[] = (bool)$volume->Compressed;
+            $ConfigManagerErrorCode[] = (int)$volume->ConfigManagerErrorCode;
+            $ConfigManagerUserConfig[] = (bool)$volume->ConfigManagerUserConfig;
+            $CreationClassName[] = (string)$volume->CreationClassName;
+            $DeviceID[] = (string)$volume->DeviceID;
+            $DirtyBitSet[] = (bool)$volume->DirtyBitSet;
+            $DriveLetter[] = (int)$volume->DriveLetter;
+            $DriveType[] = (bool)$volume->DriveType;
+            $ErrorCleared[] = (bool)$volume->ErrorCleared;
+            $ErrorDescription[] = (string)$volume->ErrorDescription;
+            $ErrorMethodology[] = (string)$volume->ErrorMethodology;
+            $FileSystem[] = (string)$volume->FileSystem;
+            $FreeSpace[] = (int)$volume->FreeSpace;
+            $IndexingEnabled[] = (bool)$volume->IndexingEnabled;
+            $Label[] = (string)$volume->Label;
+            $LastErrorCode[] = (int)$volume->LastErrorCode;
+            $MaximumFileNameLength[] = (int)$volume->MaximumFileNameLength;
+            $NumberOfBlocks[] = (int)$volume->NumberOfBlocks;
+            $PageFilePresent[] = (bool)$volume->PageFilePresent;
+            $PowerManagementCapabilities[] = (int)$volume->PowerManagementCapabilities;
+            $PNPDeviceID[] = (string)$volume->PNPDeviceID;
+            $PowerManagementSupported[] = (bool)$volume->PowerManagementSupported;
+            $Purpose[] = (string)$volume->Purpose;
+            $QuotasEnabled[] = (bool)$volume->QuotasEnabled;
+            $QuotasIncomplete[] = (bool)$volume->QuotasIncomplete;
+            $QuotasRebuilding[] = (bool)$volume->QuotasRebuilding;
+            $SerialNumber[] = (int)$volume->SerialNumber;
+            $StatusInfo[] = (int)$volume->StatusInfo;
+            $SupportsDiskQuotas[] = (bool)$volume->SupportsDiskQuotas;
+            $SupportsFileBasedCompression[] = (bool)$volume->SupportsFileBasedCompression;
+            $SystemCreationClassName[] = (string)$volume->SystemCreationClassName;
+            $SystemName[] = (string)$volume->SystemName;
+            $SystemVolume[] = (bool)$volume->SystemVolume;
         }
 
-        return $volumeList;
+        return [
+            'Access' => $Access,
+            'Automount' => $Automount,
+            'Availability' => $Availability,
+            'BlockSize' => $BlockSize,
+            'BootVolume ' => $BootVolume,
+            'Capacity' => $Capacity,
+            'Compressed' => $Compressed,
+            'ConfigManagerErrorCode' => $ConfigManagerErrorCode,
+            'ConfigManagerUserConfig' => $ConfigManagerUserConfig,
+            'CreationClassName' => $CreationClassName,
+            'DeviceID' => $DeviceID,
+            'DirtyBitSet' => $DirtyBitSet,
+            'DriveLetter' => $DriveLetter,
+            'DriveType' => $DriveType,
+            'ErrorCleared' => $ErrorCleared,
+            'ErrorDescription' => $ErrorDescription,
+            'ErrorMethodology' => $ErrorMethodology,
+            'FileSystem' => $FileSystem,
+            'FreeSpace' => $FreeSpace,
+            'IndexingEnabled' => $IndexingEnabled,
+            'Label' => $Label,
+            'LastErrorCode' => $LastErrorCode,
+            'MaximumFileNameLength' => $MaximumFileNameLength,
+            'NumberOfBlocks' => $NumberOfBlocks,
+            'PageFilePresent' => $PageFilePresent,
+            'PowerManagementCapabilities' => $PowerManagementCapabilities,
+            'PNPDeviceID' => $PNPDeviceID,
+            'PowerManagementSupported' => $PowerManagementSupported,
+            'Purpose' => $Purpose,
+            'QuotasEnabled' => $QuotasEnabled,
+            'QuotasIncomplete' => $QuotasIncomplete,
+            'QuotasRebuilding' => $QuotasRebuilding,
+            'SerialNumber' => $SerialNumber,
+            'StatusInfo' => $StatusInfo,
+            'SupportsDiskQuotas' => $SupportsDiskQuotas,
+            'SupportsFileBasedCompression' => $SupportsFileBasedCompression,
+            'SystemCreationClassName' => $SystemCreationClassName,
+            'SystemName' => $SystemName,
+            'SystemVolume' => $SystemVolume,
+        ];
 
     }
 
@@ -43,14 +113,14 @@ final class Win32_Volume extends WMIConnector
      * @param string $ClusterSize
      * @param string $Label
      */
-    public function formatDisk(string $DriverLetter, string $FileSystem, bool $QuickFormat, string $ClusterSize, string $Label = 'DATA'  )
+    public function formatDisk(string $DriverLetter, string $FileSystem, bool $QuickFormat, string $ClusterSize, string $Label = 'DATA')
     {
 
         $volumes = $this->_wmi_connector->ExecQuery("SELECT * FROM Win32_Volume WHERE DriveLetter = '$DriverLetter' ");
 
 
         foreach ($volumes as $volume)
-             $volume->Format($FileSystem,$QuickFormat);
+            $volume->Format($FileSystem, $QuickFormat);
 
 
     }
@@ -66,7 +136,7 @@ final class Win32_Volume extends WMIConnector
         $disks = $this->_wmi_connector->ExecQuery("SELECT * FROM Win32_Volume WHERE DriveLetter = '$DriverLetter' ");
 
         foreach ($disks as $disk)
-            $disk->Dismount($Force,$Permanent);
+            $disk->Dismount($Force, $Permanent);
 
 
     }
@@ -83,6 +153,21 @@ final class Win32_Volume extends WMIConnector
         //TODO: bool $EnableCompression = false, int $Version = 0
         foreach ($disks as $disk)
             return $disk->Mount();
+
+    }
+
+    /**
+     * @param string $DriverLetter
+     * @param bool $Force
+     * @return int
+     */
+    public function Defrag(string $DriverLetter, bool $Force): int
+    {
+
+        $disks = $this->_wmi_connector->ExecQuery("SELECT * FROM Win32_Volume WHERE DriveLetter = '$DriverLetter' ");
+
+        foreach ($disks as $disk)
+            return $disk->Defrag($Force);
 
 
     }
