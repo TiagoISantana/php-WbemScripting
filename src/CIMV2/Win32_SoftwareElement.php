@@ -24,11 +24,21 @@ final class Win32_SoftwareElement extends WMIConnector
         foreach ($this->_wmi_connector->instancesof('Win32_SoftwareElement') as $software) {
 
             $softwareList[] = [
-                'a' => $software->Name,
-                'b' => $software->Path,
-                'c' => $software->Version,
-                'd' => $software->Manufacturer,
-                'e' => $software->InstallState,
+                'Attributes' => $software->Attributes,
+                'BuildNumber' => $software->BuildNumber,
+                'CodeSet' => $software->CodeSet,
+                'IdentificationCode' => $software->IdentificationCode,
+                'InstallState' => $software->InstallState,
+                'LanguageEdition' => $software->LanguageEdition,
+                'Manufacturer' => $software->Manufacturer,
+                'Name' => $software->Name,
+                'OtherTargetOS' => $software->OtherTargetOS,
+                'Path' => $software->Path,
+                'SerialNumber' => $software->SerialNumber,
+                'SoftwareElementID' => $software->SoftwareElementID,
+                'SoftwareElementState' => $software->SoftwareElementState,
+                'TargetOperatingSystem' => $software->TargetOperatingSystem,
+                'Version' => $software->Version,
             ];
         }
 
