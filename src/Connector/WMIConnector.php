@@ -78,6 +78,7 @@ class WMIConnector {
             //"ntlmdomain: "
             );
 
+            //Documentation: https://docs.microsoft.com/pt-br/dotnet/api/system.management.impersonationlevel?view=dotnet-plat-ext-3.1
             //Enable high level impersonation
             $this->_wmi_connector->Security_->ImpersonationLevel = 3;
 
