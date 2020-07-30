@@ -2,12 +2,13 @@
 
 namespace CIMV2;
 
-
 use Connector\WMIConnector;
 
 /**
  * Class Win32_Process
  * @package WMI
+ * The Win32_Process class represents a sequence of events on a Win32 system.
+ * Any sequence consisting of the interaction of one or more processors or interpreters, some executable code, and a set of inputs, is a descendent (or member) of this class.
  */
 final class Win32_Process extends WMIConnector
 {
@@ -16,7 +17,7 @@ final class Win32_Process extends WMIConnector
      * @return array
      * Retrieve information running process of the machine
      */
-    public function getMachineProcess(): array
+    public function getAttributes(): array
     {
 
         $processList = [];
@@ -54,7 +55,7 @@ final class Win32_Process extends WMIConnector
 
     /**
      * @param string $ProcessName
-     * @return
+     * @return int
      */
     public function createNewProcess(string $ProcessName)
     {
@@ -64,7 +65,5 @@ final class Win32_Process extends WMIConnector
         return $process->Create($ProcessName);
 
     }
-
-
 
 }

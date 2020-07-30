@@ -5,16 +5,22 @@ namespace CIMV2;
 
 use Connector\WMIConnector;
 
+/**
+ * Class Win32_PhysicalMemory
+ * @package CIMV2
+ * The Win32_PhysicalMemory class represents a physical memory device located on a computer system as available to the operating system.
+ *
+ */
 final class Win32_PhysicalMemory extends WMIConnector
 {
 
     /**
      * @return array
      * Retrieve information memory of the machine
+     * TODO: NEED TO CHANGE OUTPUT FORMAT
      */
     public function getAttributes(): array
     {
-
 
         foreach ($this->_wmi_connector->instancesof('Win32_PhysicalMemory') as $mem) {
 

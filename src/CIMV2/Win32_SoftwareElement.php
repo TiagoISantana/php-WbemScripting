@@ -8,6 +8,9 @@ use Connector\WMIConnector;
 /**
  * Class Win32_Volume
  * @package WMI
+ * The Win32_SMBIOSMemory class represents the properties of a computer system's memory as seen through the System Management BIOS (SMBIOS) interface.
+ * The SMBIOS interface does not distinguish between non-volatile, volatile, and flash memories.
+ * As such, the CIM_Memory class is the parent class of all types of memory.
  */
 final class Win32_SoftwareElement extends WMIConnector
 {
@@ -16,7 +19,7 @@ final class Win32_SoftwareElement extends WMIConnector
      * @return array
      * Retrieve information volumes(disks) of the machine
      */
-    public function getSoftware(): array
+    public function getAttributes(): array
     {
 
         $softwareList = [];
@@ -42,7 +45,7 @@ final class Win32_SoftwareElement extends WMIConnector
             ];
         }
 
-        return $softwareList;
+        return (array)$softwareList;
 
     }
 

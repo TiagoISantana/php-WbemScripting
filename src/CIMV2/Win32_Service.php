@@ -5,6 +5,41 @@ namespace CIMV2;
 
 use Connector\WMIConnector;
 
+/**
+ * Class Win32_Service
+ * @package CIMV2
+ *The Win32_Service class represents a service on a Win32 computer system.
+ * A service application conforms to the interface rules of the Service Control Manager (SCM) and can be started by a user automatically at system boot through the Services control panel utility, or by an application that uses the service functions included in the Win32 API.
+ * Services can execute even when no user is logged on to the system.
+ *
+ * RETURN CODE STATES INT
+ * 0 - The request was accepted.
+ * 1 - The request is not supported.
+ * 2 - The user did not have the necessary access.
+ * 3 - The service cannot be stopped because other services that are running are dependent on it.
+ * 4 - The requested control code is not valid, or it is unacceptable to the service.
+ * 5 - The requested control code cannot be sent to the service because the state of the service (Win32_BaseService:State) is equal to 0, 1, or 2.
+ * 6 - The service has not been started.
+ * 7 - The service did not respond to the start request in a timely fashion.
+ * 8 - Unknown failure when starting the service.
+ * 9 - The directory path to the service executable was not found.
+ * 10 - The service is already running.
+ * 11 - The database to add a new service is locked.
+ * 12 - A dependency for which this service relies on has been removed from the system.
+ * 13 - The service failed to find the service needed from a dependent service.
+ * 14 - The service has been disabled from the system.
+ * 15 - The service does not have the correct authentication to run on the system.
+ * 16 - This service is being removed from the system.
+ * 17 - There is no execution thread for the service.
+ * 18 - There are circular dependencies when starting the service.
+ * 19 - There is a service running under the same name.
+ * 20 - There are invalid characters in the name of the service.
+ * 21 - Invalid parameters have been passed to the service.
+ * 22 - The account, which this service is to run under is either invalid or lacks the permissions to run the service.
+ * 23 - The service exists in the database of services available from the system.
+ * 24 - The service is currently paused in the system.
+ * Other - For integer values other than those listed above, refer to Win32 error code documentation.
+ */
 final class Win32_Service extends WMIConnector
 {
 
@@ -12,7 +47,7 @@ final class Win32_Service extends WMIConnector
      * @return array
      * Retrieve information processor of the machine
      */
-    public function getProperties(): array
+    public function getAttributes(): array
     {
 
         $services = [];
@@ -50,35 +85,10 @@ final class Win32_Service extends WMIConnector
 
     }
 
-
-    /*
-      0 - The request was accepted.
-       1 - The request is not supported.
-       2 - The user did not have the necessary access.
-       3 - The service cannot be stopped because other services that are running are dependent on it.
-       4 - The requested control code is not valid, or it is unacceptable to the service.
-       5 - The requested control code cannot be sent to the service because the state of the service (Win32_BaseService:State) is equal to 0, 1, or 2.
-       6 - The service has not been started.
-       7 - The service did not respond to the start request in a timely fashion.
-       8 - Unknown failure when starting the service.
-       9 - The directory path to the service executable was not found.
-       10 - The service is already running.
-       11 - The database to add a new service is locked.
-       12 - A dependency for which this service relies on has been removed from the system.
-       13 - The service failed to find the service needed from a dependent service.
-       14 - The service has been disabled from the system.
-       15 - The service does not have the correct authentication to run on the system.
-       16 - This service is being removed from the system.
-       17 - There is no execution thread for the service.
-       18 - There are circular dependencies when starting the service.
-       19 - There is a service running under the same name.
-       20 - There are invalid characters in the name of the service.
-       21 - Invalid parameters have been passed to the service.
-       22 - The account, which this service is to run under is either invalid or lacks the permissions to run the service.
-       23 - The service exists in the database of services available from the system.
-       24 - The service is currently paused in the system.
-       Other - For integer values other than those listed above, refer to Win32 error code documentation.
-    */
+    /**
+     * @param int $ProcessId
+     * @return mixed
+     */
     public function StopService(int $ProcessId)
     {
 
@@ -88,6 +98,89 @@ final class Win32_Service extends WMIConnector
 
         foreach ($services as $service)
             return $service->StopService();
+
+
+    }
+
+    /**
+     * @param int $ProcessId
+     * @return mixed
+     */
+    public function StartService(int $ProcessId)
+    {
+
+        $return = null;
+
+        $services = $this->_wmi_connector->ExecQuery("SELECT * FROM Win32_Service WHERE ProcessId = $ProcessId ");
+
+        foreach ($services as $service)
+            return $service->StartService();
+
+
+    }
+
+    /**
+     * @param int $ProcessId
+     * @return mixed
+     */
+    public function ResumeService(int $ProcessId)
+    {
+
+        $return = null;
+
+        $services = $this->_wmi_connector->ExecQuery("SELECT * FROM Win32_Service WHERE ProcessId = $ProcessId ");
+
+        foreach ($services as $service)
+            return $service->ResumeService();
+
+
+    }
+
+    /**
+     * @param int $ProcessId
+     * @return mixed
+     */
+    public function PauseService(int $ProcessId)
+    {
+
+        $return = null;
+
+        $services = $this->_wmi_connector->ExecQuery("SELECT * FROM Win32_Service WHERE ProcessId = $ProcessId ");
+
+        foreach ($services as $service)
+            return $service->PauseService();
+
+
+    }
+
+    /**
+     * @param int $ProcessId
+     * @return mixed
+     */
+    public function Delete(int $ProcessId)
+    {
+
+        $return = null;
+
+        $services = $this->_wmi_connector->ExecQuery("SELECT * FROM Win32_Service WHERE ProcessId = $ProcessId ");
+
+        foreach ($services as $service)
+            return $service->Delete();
+
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function Create()
+    {
+
+        $return = null;
+
+        $instanceWin32_service = $this->_wmi_connector->instancesof('Win32_Service');
+
+        return $instanceWin32_service->create();
 
 
     }
