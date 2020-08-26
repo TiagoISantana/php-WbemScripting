@@ -41,6 +41,16 @@ final class Win32_Process extends WMIConnector
 
     /**
      * @param int $pid
+     *
+     * The Create method creates a new process.
+     * The method returns an integer value that can be interpretted as follows:
+     * 0 - Successful completion.
+     * 2 - The user does not have access to the requested information.
+     * 3 - The user does not have sufficient privilge.
+     * 8 - Unknown failure.
+     * 9 - The path specified does not exist.
+     * 21 - The specified parameter is invalid.
+     * Other - For integer values other than those listed above, refer to Win32 error code documentation.
      */
     public function killProcess(int $pid): void
     {

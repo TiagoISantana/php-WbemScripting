@@ -12,6 +12,13 @@ use Connector\WMIConnector;
 class WmiMonitorBrightnessMethods extends WMIConnector
 {
 
+    /**
+     * WmiMonitorBrightnessMethods constructor.
+     * @param string $host
+     * @param string|null $username
+     * @param string|null $password
+     * @throws \Exception
+     */
     public function __construct(string $host, string $username = null, string $password = null)
     {
 
@@ -19,6 +26,9 @@ class WmiMonitorBrightnessMethods extends WMIConnector
 
     }
 
+    /**
+     * @param bool $brightness
+     */
     public function WmiSetBrightness(bool $brightness): void
     {
 
