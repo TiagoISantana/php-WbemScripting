@@ -7,6 +7,7 @@ use Connector\WMIConnector;
 
 /**
  * Class Win32_Process
+ * Set current brightness setting
  * @package WMI
  */
 class WmiMonitorBrightnessMethods extends WMIConnector
@@ -27,6 +28,8 @@ class WmiMonitorBrightnessMethods extends WMIConnector
     }
 
     /**
+     * This method can set monitor brightness, but for some reason float|int does not work, instead the method only accepts bool
+     * FALSE = 0% | TRUE = 100%
      * @param bool $brightness
      */
     public function WmiSetBrightness(bool $brightness): void

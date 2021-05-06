@@ -39,11 +39,14 @@ TODO:Composer registry
 ```php
 <?php
 
-//Load required files
+//Load required Lib
 require "vendor/autoload.php";
 
-//Connect to localhost and load host memory specs
-$obj = new CIMV2\Win32_PhysicalMemory(".");
+//Remote Machine
+//$cimv2_ = new CIMV2\Win32_Process("hostname_or_ip",'domain\username','password');
 
-//Returns information from physical server memory
-print_r($obj->getMachineMemory());
+//Use WMI locally
+$cimv2_obj = new CIMV2\Win32_Process(".");
+
+//List machine process
+var_dump($cimv2_obj->getAttributes());

@@ -47,8 +47,8 @@ class WMIConnector {
     /**
      * WMIRemoteConnection constructor.
      * @param string $host
-     * @param string $username
-     * @param string $password
+     * @param string|null $username
+     * @param string|null $password
      * @param string $ROOT_CI
      * @param string $ROOT_FO
      * @throws Exception

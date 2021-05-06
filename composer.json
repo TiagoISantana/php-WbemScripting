@@ -1,11 +1,10 @@
 {
     "name": "tisantan/php-wbemscripting",
     "description": "Connect into any windows machine using COM extension and WbemScripting",
-    "keywords": ["WbemScripting", "composer", "package"],
+    "keywords": ["WbemScripting"],
     "authors": [
         {
-            "name": "Tiago Santana",
-            "email": "tiagoiamamoto@gmail.com"
+            "name": "Tiago Santana"
         }
     ],
     "type": "project",
@@ -18,7 +17,6 @@
             "CIMV2\\": "src/CIMV2/",
             "Connector\\": "src/Connector/",
             "WMI\\": "src/WMI/",
-            "Console\\": "src/Console/"
         }
     }
 }
