@@ -1,6 +1,6 @@
 # PHP project using com_dotnet extension and  & WbemScripting
 
-This project is a concept that php can be used to connect with windows machines using WMIC
+This project is a concept that php can be used to connect with Windows machines using WMI.
 
 #### Requirements
 
@@ -8,8 +8,6 @@ This project is a concept that php can be used to connect with windows machines 
 - com_dotnet extension active;
 - Windows machines: Because it uses com_dotnet extension;
 - Make sure to enable WMI service on the remote machine: [tutorial](https://docs.microsoft.com/en-us/windows/win32/wmisdk/connecting-to-wmi-remotely-starting-with-vista)
-
-#### Getting Started
 
 ###### Disclaimer
 
@@ -25,6 +23,8 @@ This library is in its initial stage and is without stability, I do not guarante
 - Much more coming soon...
 
 ###### Installation
+
+You need to enable WMI service on your target machine
 
 Download the files and run composer
 
