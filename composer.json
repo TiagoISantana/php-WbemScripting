@@ -16,7 +16,7 @@
         "psr-4": {
             "CIMV2\\": "src/CIMV2/",
             "Connector\\": "src/Connector/",
-            "WMI\\": "src/WMI/",
+            "WMI\\": "src/WMI/"
         }
     }
 }
